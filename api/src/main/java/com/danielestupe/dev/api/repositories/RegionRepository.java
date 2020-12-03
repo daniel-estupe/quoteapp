@@ -1,0 +1,13 @@
+package com.danielestupe.dev.api.repositories;
+
+import java.util.List;
+
+import com.danielestupe.dev.api.entities.Region;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RegionRepository extends CrudRepository<Region, Integer> {
+  List<Region> findAll();
+}
