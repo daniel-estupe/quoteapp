@@ -1,5 +1,8 @@
 CREATE DATABASE QuoteApp;
+GO
+
 USE QuoteApp;
+GO
 
 CREATE TABLE Regiones (
 	id int primary key identity(1, 1) not null,
