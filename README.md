@@ -40,7 +40,7 @@ spring.datasource.username=user
 spring.datasource.password=password
 ```
 
-### Resultado [:computer:]
+## Resultado [:computer:]
 
 ![Cotizador de envíos](images/QuoteApp.png)
 
