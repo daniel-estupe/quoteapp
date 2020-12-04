@@ -55,11 +55,6 @@ export class AppComponent implements OnInit {
   }
 
   calcularCosto() {
-    // const categoriaCliente: any = this.cotizador.categoriaClienteId;
-    // const paisDestino: any = this.cotizador.paisDestinoId;
-    // this.cotizador.categoriaClienteId = parseInt(categoriaCliente);
-    // this.cotizador.paisDestinoId = parseInt(paisDestino);
-
     this._api.getQuote(this.cotizador).subscribe((data: number) => {
       this.costo = data;
     })
