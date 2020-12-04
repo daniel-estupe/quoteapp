@@ -4,6 +4,7 @@ import com.danielestupe.dev.api.models.Cotizador;
 import com.danielestupe.dev.api.services.CotizadorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class CotizadorController {
   @Autowired
+  @Qualifier("Quote")
   private CotizadorService service;
 
   @PostMapping
