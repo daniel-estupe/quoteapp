@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import Cotizador from './interfaces/Cotizador';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class QuoteapiService {
     return this._http.get('http://localhost:8086/api/categorias')
   }
 
-  getQuote(data) {
+  getQuote(data: Cotizador) {
     return this._http.post('http://localhost:8086/api/cotizador', data);
   }
 }

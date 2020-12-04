@@ -1,18 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteapiService } from './quoteapi.service';
-
-interface Dimension {
-  ancho: number,
-  alto: number,
-  largo: number
-}
-
-interface Cotizador {
-  peso: number,
-  dimension: Dimension,
-  paisDestinoId: number,
-  categoriaClienteId: number
-}
+import Cotizador from './interfaces/Cotizador';
 
 @Component({
   selector: 'app-root',
