@@ -1,0 +1,105 @@
+<nav class="navbar fixed-top navbar-light bg-navbar">
+  <span class="navbar-brand mb-0 h1 font-weight-bolder">
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calculator" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+      <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+    </svg>
+    Cotizador de Envíos
+  </span>
+</nav>
+<div class="mt-7"></div>
+<div class="container">
+  <div class="row mt-1">
+    <div class="col-sm mt-1">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary font-weight-bold">Costo de Envío por Región</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let region of regiones"
+            >
+              {{region.nombre}}
+              <span class="badge badge-light badge-pill p-3">{{region.tarifaGTQ | currency: 'Q. '}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm mt-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary font-weight-bold">Descuentos</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Clientes</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let cat of categorias"
+            >
+              {{cat.descripcion}}
+              <span class="badge badge-light badge-pill p-3">{{cat.descuento | currency: 'Q. '}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-secondary font-weight-bold">Calculadora</h5>
+          <div class="d-lg-flex mt-2">
+            <form #quoteForm="ngForm">
+              <div class="form-group">
+                <label for="paisDestino">País destino</label>
+                <select id="paisDestino" class="form-control" [(ngModel)]="cotizador.paisDestinoId" name="paisId">
+                  <option selected disabled value="">Selecciona...</option>
+                  <option *ngFor="let pais of paises" value="{{pais.id}}">{{pais.nombre}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="cliente">Cliente</label>
+                <select id="cliente" class="form-control" [(ngModel)]="cotizador.categoriaClienteId" name="categoriaId">
+                  <option selected disabled value="">Selecciona...</option>
+                  <option *ngFor="let cat of categorias" value="{{cat.id}}">{{cat.descripcion}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="peso">Peso (lb.)</label>
+                <input type="number" class="form-control" id="peso" [(ngModel)]="cotizador.peso" name="peso"
+                  required autocomplete="off">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="ancho">Ancho (m.)</label>
+                  <input type="number" class="form-control" id="ancho" [(ngModel)]="cotizador.dimension.ancho" name="ancho"
+                    required autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="alto">Alto (m.)</label>
+                  <input type="number" class="form-control" id="alto" [(ngModel)]="cotizador.dimension.alto" name="alto"
+                    required autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="largo">Largo (m.)</label>
+                  <input type="number" class="form-control" id="largo" [(ngModel)]="cotizador.dimension.largo" name="largo"
+                    required autocomplete="off">
+                </div>
+              </div>
+              <button type="button" class="btn btn-success btn-block" (click)="calcularCosto()">Calcular costo</button>
+            </form>
+              
+            <div class="d-lg-flex align-self-center flex-fill align-items-center mt-3">
+              <div class="flex-fill">
+                <h4 class="text-center my-4">COSTO TOTAL</h4>
+                <p class="text-center text-secondary font-weight-bold h1">{{ costo | currency: 'Q. ' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+<br>
