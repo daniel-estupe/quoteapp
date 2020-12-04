@@ -46,9 +46,4 @@ spring.datasource.password=password
 
 ![Cotizador de envíos](images/QuoteAppB.png)
 
-
-## Demo [:computer:]
-
-![Cotizador de envíos](Demo.mp4)
-
 ---
